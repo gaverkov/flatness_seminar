@@ -1,0 +1,73 @@
+\section{Poisson summation formula} 
+
+The Fourier transform of a univariate function $f$ is given by 
+\begin{equation} \label{fourier:transform} 
+	\hat{f} (y) := \int_\R f(x) e^{-2 \pi i x y} d x
+\end{equation} 
+and the inversion formula is 
+\begin{equation} \label{inverse:fourier:transform} 
+	f(x) = \int_\R \hat{f}(x) e^{2  \pi i x y} d x. 
+\end{equation} 
+The integral and the inversion formula make sense if $f: \R \to \C$ is a sufficiently regular function. The intuitive meaning of the Fourier transform is this. The function $x \mapsto e^{2 \pi i x y}$ has frequency $y$. And we want to mix our given function $f(x)$ out of those  frequencies. The value $\hat{f}(y)$ determines how much of the frequency $y$ should be added to the mixture in order to obtain $f(x)$. 
+
+The theory of distribution endows both of the integrals with a meaning for a large family of generalization of functions (called distributions or generalized functions). We are not going to introduce distributions rigorously, but what we want to observe is that using the theory of distributions as a tool makes calculations convenient and non-technical. There are many books on the theory of distributions including the one by H\"ormander (but there are more: a series of books by Gelfand and different co-authors). One nice aspect of the theory of distributions is that we can consider the Fourier transform and the Fourier series of signed measures. That's what we are going to use in our context. Our presentation of the Poisson summation formula is going to be somewhat sketchy, as we only want to reveal the ideas (and avoid technicalities). 
+
+Let $\delta_p$ the Dirac delta function, i.e., a unit mass placed at $p$. The function $ \sum_{z \in \Z} \delta_z$ is called a Dirac comb. When we have a signed measure $\mu$ and we write the integrals in the form like $\int \mu(x) f(x) d x$ we mean the integration of $f$ with respect to the measure $\mu$. That is, $\mu(x) d x$ is just a notation for $\mu( d x)$. As the Dirac comb is $1$-periodic, we can calculate its Fourier series expansion:
+\[
+	\sum_{z \in \Z} \delta_z(x) = \sum_{k=-\infty}^\infty c_k e^{-2 \pi i k x}. 
+\] 
+We determine $c_k$ by the well-known formula 
+\[
+	c_k  = \int_{\R / \Z} \left(\sum_{z \in \Z} \delta_z\right)(x) e^{2 \pi i kx} d x = e^{2 \pi i k 0} = 1. 
+\]
+Above, by $\R/ \Z$ we mean just one period, like $[-1/2,1/2)$. We thus obtain 
+\begin{equation} \label{fourier:dirac:comb} 
+	\sum_{z \in \Z} \delta_z = \sum_{k=-\infty}^\infty e^{ - 2 \pi i k x}. 
+\end{equation} 
+Informally speaking, the Dirac comb is mixed out of integral frequencies $k \in \Z$ and it has exactly the same amount of each of those frequencies. To get a visual justification of the above fact, you can plot $\sum_{k=-N}^N e^{ - 2\pi k x}$ for a sufficiently large $N \in \N$. 
+
+What we can do now is to multiply  \eqref{fourier:dirac:comb} by an $f(x)$ and then integrate by $x$ over $\R$. This gives 
+\[
+	\sum_{z \in \Z} \int_\R \delta_z(x) f(x) d x  = \sum_{k=-\infty}^\infty \int_\R f(x) e^{- 2\pi i kx} d x. 
+\]
+Note (again) that we understand the integration from the perspective of the theory of distributions. The latter equation can be rewritten as 
+\begin{equation} \label{poisson:summation} 
+	\sum_{z \in \Z} f(z) = \sum_{k \in \Z} \hat{f} (k).  
+\end{equation} 
+This is what one calls the Poisson summation formula (in dimension one). In the sense of distributions, the formula is valid for a large family of distributions. 
+
+Needless to say, we can extend \eqref{fourier:transform}, \eqref{inverse:fourier:transform} \eqref{fourier:dirac:comb} and \eqref{poisson:summation} to the multivarate setting.  As for \eqref{fourier:transform} and \eqref{inverse:fourier:transform}, one replaces $\R$ by $\R^n$ so that $x$ and $y$ become vectors in $\R^n$ and $x y$ gets replaced by the standard scalar product of those vectors. 
+
+The $n$-variate Delta function $\delta_z(x) = \delta_{z_i} (x_1) \cdots \delta_{z_n}(x_n)$ for $z = (z_1,\ldots,z_n)$ and $x = (x_1,\ldots,x_n)$ is the tensor product By taking the tensor product of $n$ copies of \eqref{fourier:dirac:comb}, we arrive at its $n$-variate version 
+\begin{equation} 
+	\label{n:var:fourier:comb} 
+	\sum_{z \in \Z^n} \delta_z(x)  = \sum_{k \in \Z^n} e^{ - 2 \pi i \sprod{k}{x}}. 
+\end{equation}
+Multiplication with $f(x)$ and integration over $\R^n$ gives 
+\begin{equation} 
+		\label{n:var:poisson:summation} 
+	\int_{z  \in \Z^n} f(z) = \sum_{k \in \Z^n} \hat{f} (k), 
+\end{equation} 
+which is the $n$-variate Poisson summation formula for the lattice $\Z^n$. 
+We also want to formulation the Poisson summation formula for arbitrary lattices. To this end, we need to carry out a change of variables in \eqref{n:var:fourier:comb}. Let's explain, how a change of variables is carried out for distribution. Assume we have some $f(x)$ and we want to introduce $f( B x)$ with $B \in \GL_n(\R)$ with a meaning. Using the substitution $y = Bx$, we obtain  
+\begin{equation} \label{subs} 
+	\int_{\R^n} f(B x) g(x) d x  = \frac{1}{|\det(B) | } \int_{\R^n} f(y) g(B^{-1} y) d y. 
+\end{equation} 
+If $f$ and $g$ are regular enough, then this is just a standard formula from analysis. If $f$ is a distribution, then the integral on the right-hand side is the action of the distribution $f$ onto $g$ (where $g$ is chosen to be a sufficiently regular function - a so-called test function). 
+With this formula in mind, we can now calculate $\delta_z(B x)$. By \eqref{subs}, 
+\begin{align*} 
+	\int_{\R^n} \delta_z(B x) g(x) d x  & = \frac{1}{|\det(B)|} \int_{\R^n} \delta_z(y) g(B^{-1} y) d y \\ & = \frac{1}{|\det(B)|} g(B^{-1} z) \\ & =  \frac{1}{| \det(B)|} \int_{\R^n} \delta_{B^{-1} z}(x) g(x) d x. 
+\end{align*} 
+Hence $\delta_z(B x) = \frac{1}{|\det(B)|} \delta_{B^{-1} z} (x)$. Using the substitution $x \rightsquigarrow B^{-1} x$ in \eqref{n:var:fourier:comb}, we obtain 
+\begin{equation} \label{aux:poisson} 
+	| \det(B) | \sum_{z \in \Z^n} \delta_{B z}(x) = \sum_{k \in \Z^n} e^{ - 2 \pi i \sprod{k}{B^{-1} x}} 
+\end{equation} 
+Now, we can use $B$ to define the lattice $\Lambda : = B \Z^n$ so that the dual lattice $\Lambda^\ast$ is given by $\Lambda^\ast := (B^{-1})^\top \Z^n$. The vector $Bz $ belongs to $\Lambda$, whereas $\sprod{k}{B^{-1} x} = \sprod{ (B^{-1})^\top k}{x}$ so that the vector $(B^{-1})^\top k $ belongs to $\Lambda^\ast$. The value $|\det(B)|$ is $\det(\Lambda) = (\det \Lambda^\ast )^{-1}$. Consequently, \eqref{aux:poisson}  gets reformulated as 
+\[
+	\sum_{l \in \Lambda} \delta_l(x) = \det(\Lambda^\ast) \sum_{d \in \Lambda^\ast} e^{- 2 \pi i \sprod{d}{x}}. 
+\]
+Multiplication of the latter formula with $f(x)$ and integration over $\R^n$ with respect to $x$ gives 
+\begin{equation} \label{poisson:summation:lattices} 
+	\sum_{l \in \Lambda} f(l) = \det(\Lambda^\ast) \sum_{d \in \Lambda^\ast} \hat{f} (d) 
+\end{equation}
+\eqref{poisson:summation:lattices} is the Poisson summation formula with respect to arbitrary lattices. 

@@ -1,0 +1,97 @@
+	
+\section{$l_2$-join of normed spaces}
+
+For the sake of simplicity, normed spaces considered below are finite-dimensional. The underlying field is supposed to be $\R$, but things might also work for the field of complex numbers. 
+
+For normed spaces $X$ and $Y$, we call the $l_2$ join to be the space $X \oplus_2 Y = X \times Y$ with the norm 
+\[
+	\| (x,y) \|_{X \oplus_2 Y} := \sqrt{ \|x\|_X^2 + \|y\|_Y^2}. 
+\]
+The above is indeed a norm, which can be seen directly. Furthermore, the $l_2$-join operation on normed spaces is commutative and associative. Thus, we can also consider the $l_2$-join of more than one spaces, say $X \oplus_2 Y \oplus_2 Z$ being the join of three normed spaces, given by 
+\[
+	\|(x,y,z)\|_{X \oplus_2 Y \oplus_2 Z} = \sqrt{\|x\|_X^2 + \|y\|_Y^2 + \|z\|_Z^2}.  
+\]
+
+We've got a nice formula for the dual of $X^{\oplus_2 n}$. 
+\begin{prop}
+	$(X \oplus_2 Y)^\ast = X^\ast \oplus_2 Y^\ast.$ 
+\end{prop} 
+\begin{proof} 
+	For $f \in X^\ast$ and $g \in Y^\ast$. The application of $(f,g)$ to $(x,y) \in X \times Y$ is $f(x) + g(y)$. We have 
+	\begin{align*}
+		f(x) + g(y)  
+			& \le \|f\|_{X^\ast} \|x\|_X + \|g\|_{Y^\ast} \|y\|_Y
+		\\&  \le \sqrt{\|f\|_{X^\ast}^2  + \|g\|_{Y^\ast}^2 } \sqrt{\|x\|_X^2 + \|y\|_Y^2} & & \text{(by Cauchy-Schwarz)}
+		\\ & = \| (f,g) \|_{X^\ast \oplus_2 Y^\ast} \| (x,y)\|_{X \oplus_2 Y}. 
+	\end{align*} 
+	This shows that $\|(f,g) \|_{(X \oplus_2 Y)^\ast} \le \|(f,g)\|_{X^\ast \oplus_2 Y^\ast}.$ 
+	To see that the converse inequality holds, for given $f$ and $g$ choose $x' \in X$ with $\|x'\|_X = 1$, $f(x') = \|f\|_{X^\ast}$ and $y' \in Y$ with $\|y'\|_Y = 1$ and $g(y') = \|g\|_{Y^\ast}$ and then use $x = \|f\|_{X^\ast} x'$ and $y =\|g\|_{Y^\ast} y'$. With this choice of $x$ and $y$, we have $f(x) = \|f\|_{X^\ast}^2  = \|x\|_X^2$ and $g(y) = \|g\|_{X^\ast}^2 = \|y\|_Y^2$ so that 
+	\begin{align*}
+		f(x) + g(y) & = \sqrt{ \|f\|_{X^\ast}^2 + \|g\|_{Y^\ast}^2} \sqrt{\|x\|_X^2 + \|y\|_Y^2}. 
+	\end{align*} 
+	This shows the converse inequality $\|(f,g) \|_{(X \oplus_2 Y)^\ast} \ge \|(f,g)\|_{X^\ast \oplus_2 Y^\ast}.$ 
+\end{proof} 
+
+\begin{cor}
+	For normed spaces $X_1,\ldots,X_N$ one has 
+	\[
+		(X_1 \oplus_2 \cdots \oplus_2 X_N)^\ast = X_1^\ast \oplus_2 \cdots \oplus_2 X_N^\ast. 
+	\]
+\end{cor} 
+
+Now, having a space $X$, we can make an $N$-fold $l_2$-join of $X$ with itself, that is, we can define 
+\[	  X^{\oplus_2 N} := \underbrace{X \oplus_2 \cdots \oplus_2 X}_{N \ \text{times}}.
+\] 
+From the above, it is clear, that for this operation on $X$, the duality satisfies 
+\begin{equation} \label{N:fold:dual} 
+	(X^{\oplus_2 N})^\ast = {(X^\ast)}^{\oplus_2 N}. 
+\end{equation}
+
+\begin{rem} 
+It turns out that the space $X^{\oplus_2 N}$ gets quite close to the Euclidean one as $N$ grows, or, putting this in other words, the unit ball of $X^{\oplus_2 N}$ gets gradually rather round (close to an ellipsoid). Intuitively, this can be seen by looking at the norm $\| (x^1,\ldots,x^N)\|_{X^{\oplus_2 N}} = \sqrt{ \sum_{i=1}^N \| x^i\|_X^2 }$. If we let one of the $x^i$ range arbitrarily and fix all the $x^j$ with $j \ne i$ equal to $0$, we get into the normed subspace isomorphic  to $X$. If however, we fix a vector $(0,\ldots,b^i,0\ldots,0)$ for each $i=1,\ldots, N$ and span a subspace by those $N$ vectors, we get the normed subspace which is Euclidean. By this observation, the space $X^{\oplus_2 N}$ has $N$ copies of $X$ sitting inside but, restricted to rather many $N$-dimensional subspaces, it becomes a Euclidean space. 
+\end{rem} 
+
+We will present a generalization of \eqref{N:fold:dual}, in which $N$ becomes infinite (and not necessarily countable). To this end, we consider the $L_2$-space $L_2(\Omega,P)$ with respect to a measure space $(\Omega,P)$ and define the space $L_2(\Omega,P;X) := L_2(\Omega,P) \otimes X := X^{\oplus_2 L_2(\Omega, X)}$ (CHOOSE YOUR FAVORITE NOTATION) as the space of all functions $ x : \Omega \to X$ that satisfy 
+\[
+	\int_{\Omega} \|x(\omega)\|_X^2 P(d \omega) < \infty.
+\] The norm on those functions is defined by 
+\[
+	\|x\|_{L_2(\Omega,P;X)} = \sqrt{ \int_{\Omega} \|x(\omega) \|_X^2 P (d \omega)}. 
+\]
+We call this $L_2(\Omega,P)$-fold $l_2$-join of $X$. This is an operation that $l_2$-joins copies of $X$ parametrized by $\omega \in \Omega$. 
+
+\begin{rem} 
+Note that as as  vector space (that is, ignoring the norm), the space $L_2(\Omega,P) \otimes X$ and  when $X = (\R^n, \| \dotvar \|_X)$ is just the set of all maps $f(\omega) = (f_1(\omega), \ldots,f_n(\omega))$ from $\Omega$ to $\R^n$, with the property that each $f_i$ belongs to $L_2(\Omega,P)$. Indeed, since any two normed spaces $X = (\R^n, \| \dotvar \|_X)$ and $Y = (\R^n, \| \dotvar \|_Y)$  are equivalent up to constant multiples, the respective spaces $L_2(\Omega, P; X)$ and $L_2(\Omega, P; Y)$ are also equivalent. 
+\end{rem} 
+
+\newcommand{\lhs}{(X^{\oplus_2 H})^\ast}
+\newcommand{\rhs}{(X^\ast)^{\oplus_2 H}}
+\begin{prop} 
+	For the Hilbert space $H = L_2(\Omega,P)$ one has 
+	\[
+		\lhs = \rhs.
+	\]
+\end{prop} 
+\begin{proof} 
+	For $y \in \lhs$ and $x \in X^{\oplus_2 H}$, we have  
+	\begin{align*} 
+		y(x):= & \int_{\Omega} \sprod{y(\omega)}{x(\omega)} P(d \omega) 
+	\\	 \le & \int_{\Omega} \|y(\omega)\|_{X^\ast} \|x(\omega)\|_{X} P(d \omega) 
+	\\ \le & \sqrt{\int_\Omega \|y(\Omega) \|_{X^\ast}^2 P(d \omega) } \sqrt{\int_\Omega \|x(\omega)\|_X^2 P(d \omega)} & \text{(by Cauchy-Schwarz)}. 
+	\end{align*}
+	This shows $\|y \|_{\lhs} \le \|y\|_{\rhs}$. 
+	
+	Now, we fix a disjoint union $B:=\bigcup_{i=1}^N B_i$ of $N \in \N$ subsets of $\Omega$ satisfying $w_i :=P(B_i) < \infty$ and consider the vector space $V$ of all $y$ with $y(\omega) = 0$ for $\omega \in B$ and $y$ being constant on each $B_i$. Within $V$, the norm of $\rhs$ coincides with the norm of $(X^\ast)^{\oplus_2 N}$ up to rescaling. Let's formalize the above observation. For $y \in V$, we have 
+	\begin{align*} 
+		\| y\|_{\rhs} = &  \sqrt{ \sum_{i=1}^N \| y(B_i) \|_{X^\ast}^2 w_i }
+		\\ = & \| ( \sqrt{w_1} y(B_1),\ldots, \sqrt{w_N} y(B_n) ) \|_{(X^\ast)^{\oplus_2 N}} 
+		\\ = & \| ( \sqrt{w_1} y(B_1),\ldots, \sqrt{w_N} y(B_n) ) \|_{(X^{\oplus_2 N } )^\ast}  
+		\\ = & \max_{ \substack{ u_1,\ldots,u_N \in \R \colon  \\ \| (\sqrt{w_1} u_1,\ldots, \sqrt{w_N} u_N) \|_{X^{\oplus_2 N}} \le 1}} \sum_{i=1}^N \sqrt{w_i} \, y(B_i) \, \sqrt{w_i} \, u_i. 
+		\\ = & \max_{\substack{ u \in V \colon \\ \|u\|_{\lhs} \le 1}} \int_{\Omega} y(\omega) x(\omega) P( d \omega) 
+	\end{align*} 
+	This shows that $\|y\|_{\rhs} \ge \|y\|_{\lhs}$ for every $y \in V$.  
+	By definition of the Lebesgue integral (in terms of step functions), the union of all spaces $V$ as above (with arbitrary choices of $N$ and $B_1,\ldots,B_N$) is dense in $\rhs$. It follows that $\|y \|_{\rhs} \ge \|y \|_{\lhs}$ for every $y \in \rhs$. 
+\end{proof} 
+
+
+
